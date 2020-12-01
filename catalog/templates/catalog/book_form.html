@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block book %}
+{% if book %}
+{% if perms.catalog.change_book %}
+<li><a href="{% url 'book_update' book.pk %}">Book update</a></li>
+{% endif %}
+{% if perms.catalog.delete_book %}
+<li><a href="{% url 'book_delete' book.pk %}">Book delete</a></li>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

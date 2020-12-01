@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block author %}
+{% if author %}
+{% if perms.catalog.change_author %}
+<li><a href="{% url 'author_update' author.pk %}">Author update</a></li>
+{% endif %}
+{% if perms.catalog.delete_author %}
+<li><a href="{% url 'author_delete' author.pk %}">Author delete</a></li>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block author %}
+{% if perms.catalog.change_author %}
+<li><a href="{% url 'author_update' author.pk %}">Author update</a></li>
+{% endif %}
+{% if perms.catalog.delete_author %}
+<li><a href="{% url 'author_delete' author.pk %}">Author delete</a></li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<h1>Delete Author</h1>
+
+<p>Are you sure you want to delete the author: {{ author }}?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete.">
+</form>
+
+{% endblock %}
